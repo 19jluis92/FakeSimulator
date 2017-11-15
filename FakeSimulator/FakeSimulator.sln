@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityProject", "EntityProy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeSimulator.TestWPF", "..\FakeSimulator.TestWPF\FakeSimulator.TestWPF.csproj", "{ECFDC2E9-FBC0-47F7-8BA3-8E72BF9BC939}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeSimulator", "FakeSimulator\FakeSimulator.csproj", "{FF376E9D-DDB7-41DC-A904-148781F60A75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ECFDC2E9-FBC0-47F7-8BA3-8E72BF9BC939}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECFDC2E9-FBC0-47F7-8BA3-8E72BF9BC939}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECFDC2E9-FBC0-47F7-8BA3-8E72BF9BC939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF376E9D-DDB7-41DC-A904-148781F60A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF376E9D-DDB7-41DC-A904-148781F60A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF376E9D-DDB7-41DC-A904-148781F60A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF376E9D-DDB7-41DC-A904-148781F60A75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
