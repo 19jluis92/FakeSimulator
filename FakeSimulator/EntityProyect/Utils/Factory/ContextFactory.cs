@@ -13,11 +13,12 @@ namespace EntityProject.Utils.Factory
             context = new EntitiesContext();
         }
 
-        //public IRepository<EntityBase> GetRepository(Type t) {
-        //    Type repoType = typeof(Repository<>).MakeGenericType(t);
-        //    var repository = Activator.CreateInstance(repoType);
-        //    return repository;
-        //}
+        public object GetRepository(Type t)
+        {
+            Type repoType = typeof(Repository<>).MakeGenericType(t);
+            var repository = Activator.CreateInstance(repoType);
+            return repository ;
+        }
 
 
     }

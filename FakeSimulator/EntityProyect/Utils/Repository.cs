@@ -11,6 +11,10 @@ namespace EntityProject.Utils
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
         private EntitiesContext context;
+        public Repository()
+        {
+            this.context = new EntitiesContext();
+        }
         public Repository(EntitiesContext context){
             this.context = context;
         }

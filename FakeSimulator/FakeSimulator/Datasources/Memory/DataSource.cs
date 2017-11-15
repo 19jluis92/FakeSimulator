@@ -13,35 +13,40 @@ namespace FakeSimulator.Datasources.Memory
         List<Entity.BaseModelEntity> Models;
         List<Entity.MaterialEntity> Materials;
         private string v;
-        private EntityProject.Entities  context;
-     
+        //private EntityProject.Utils.Repository  context;
+       private EntityProject.Utils.Factory.ContextFactory context = new EntityProject.Utils.Factory.ContextFactory();
 
         public DataSource() : base()
         {
-            context = new EntityProject.Entities();
+           
 
             var userfactory = new Entity.Factory.UserFactory();
 
-            context.User.Add(EntityProject.Utils.UserFactoryDB.create("User1"));
-            context.User.Add(EntityProject.Utils.UserFactoryDB.create("User3"));
-            context.User.Add(EntityProject.Utils.UserFactoryDB.create("User3"));
+
+           var contextUser =( (EntityProject.Utils.Repository<User>) context.GetRepository(typeof(User)));
+            contextUser.Insert(EntityProject.Utils.UserFactoryDB.create("nuevo1"));
+            contextUser.Insert(EntityProject.Utils.UserFactoryDB.create("nuevo3"));
+            contextUser.Insert(EntityProject.Utils.UserFactoryDB.create("nuevo2"));
+
+            
 
             if (!Boolean.Parse(System.Configuration.ConfigurationManager.AppSettings["test"]))
-                context.SaveChanges();
+                contextUser.SubmitChanges();
 
-
-            context.Material.Add(new EntityProject.Material() {
+            var contextMaterial = ((EntityProject.Utils.Repository<Material>)context.GetRepository(typeof(Material)));
+            contextMaterial.Insert(new EntityProject.Material()
+            {
                 Id = 1,
                 Name = "Iron",
-                Resistence = 2 
+                Resistence = 2
             });
-            context.Material.Add(new EntityProject.Material()
+            contextMaterial.Insert(new EntityProject.Material()
             {
                 Id = 2,
                 Name = "Copper",
                 Resistence = new Decimal(1.5d)
             });
-            context.Material.Add(new EntityProject.Material()
+            contextMaterial.Insert(new EntityProject.Material()
             {
                 Id = 3,
                 Name = "Titanium",
@@ -49,37 +54,38 @@ namespace FakeSimulator.Datasources.Memory
             });
 
             if (!Boolean.Parse(System.Configuration.ConfigurationManager.AppSettings["test"]))
-                context.SaveChanges();
+                contextMaterial.SubmitChanges();
 
 
-            Models = new List<Entity.BaseModelEntity>();
+            //Models = new List<Entity.BaseModelEntity>();
 
-            var director = new Entity.Builder.ModelDirector();
+            //var director = new Entity.Builder.ModelDirector();
             //var builder1 = new Entity.Builder.ContainerPressureModelBuilder("Iron Cont. XF3", "FR Client", GetUserById(1), GetMaterialByName("Iron"), 30, 30, true, 1);
             //var builder12 = new Entity.Builder.FanCapacityModelBuilder("Iron Fan XF3", "FR Client", GetUserById(1), GetMaterialByName("Iron"), 5, 15, true, 2);
             //var builder2 = new Entity.Builder.ContainerPressureModelBuilder("Copper Cont. XF4", "RBEI Client", GetUserById(2), GetMaterialByName("Copper"), 10, 40, false, 3);
             //var builder22 = new Entity.Builder.FanCapacityModelBuilder("Copper Fan XF4", "RBEI Client", GetUserById(2), GetMaterialByName("Copper"), 10, 20, false, 4);
             //var builder3 = new Entity.Builder.ContainerPressureModelBuilder("Titanium Model XF5", "US Client", GetUserById(3), GetMaterialByName("Titanium"), 20, 10, false, 5);
-
-            context.Model.Add(new EntityProject.Model() {
+            var contextModel = ((EntityProject.Utils.Repository<Model>)context.GetRepository(typeof(Model)));
+            contextModel.Insert(new EntityProject.Model()
+            {
                 Title = "Iron Cont. XF3",
                 Description = "FR Client",
                 IdUsuario = 1,
                 IdMaterial = 1,
-                ContainerPressure =new List<ContainerPressure>() { EntityProject.Utils.ContainerPressureFactory.create(true, new Decimal(30.0d), new Decimal(30.0d)) },
+                ContainerPressure = new List<ContainerPressure>() { EntityProject.Utils.ContainerPressureFactory.create(true, new Decimal(30.0d), new Decimal(30.0d)) },
                 // FanCapacity = 
             });
-            context.Model.Add(new EntityProject.Model()
+            contextModel.Insert(new EntityProject.Model()
             {
                 Title = "Iron Cont. XF3",
                 Description = "FR Client",
                 IdUsuario = 1,
                 IdMaterial = 1,
                 //ContainerPressure = new List<ContainerPressure>() { EntityProject.Utils.ContainerPressureFactory.create(true, new Decimal(30.0d), new Decimal(30.0d)) },
-                 FanCapacity = new List<FanCapacity>() { EntityProject.Utils.FanCapacityFactory.create( new Decimal(5.0d), new Decimal(15.0d),true) },
+                FanCapacity = new List<FanCapacity>() { EntityProject.Utils.FanCapacityFactory.create(new Decimal(5.0d), new Decimal(15.0d), true) },
             });
 
-            context.Model.Add(new EntityProject.Model()
+            contextModel.Insert(new EntityProject.Model()
             {
                 Title = "Copper Cont. XF4",
                 Description = "RBEI Client",
@@ -88,7 +94,7 @@ namespace FakeSimulator.Datasources.Memory
                 ContainerPressure = new List<ContainerPressure>() { EntityProject.Utils.ContainerPressureFactory.create(false, new Decimal(10.0d), new Decimal(40.0d)) },
                 // FanCapacity = 
             });
-            context.Model.Add(new EntityProject.Model()
+            contextModel.Insert(new EntityProject.Model()
             {
                 Title = "Copper Cont. XF4",
                 Description = "RBEI Client",
@@ -97,7 +103,7 @@ namespace FakeSimulator.Datasources.Memory
                 //ContainerPressure = new List<ContainerPressure>() { EntityProject.Utils.ContainerPressureFactory.create(true, new Decimal(30.0d), new Decimal(30.0d)) },
                 FanCapacity = new List<FanCapacity>() { EntityProject.Utils.FanCapacityFactory.create(new Decimal(10.0d), new Decimal(20.0d), false) },
             });
-            context.Model.Add(new EntityProject.Model()
+            contextModel.Insert(new EntityProject.Model()
             {
                 Title = "Titanium Model XF5",
                 Description = "US Client",
@@ -113,43 +119,47 @@ namespace FakeSimulator.Datasources.Memory
             //Models.Add(director.ConstructModel(builder3));
             //director.ConstructModel();
             if (!Boolean.Parse(System.Configuration.ConfigurationManager.AppSettings["test"]))
-                context.SaveChanges();
+                contextModel.SubmitChanges();
         }
 
-        
+
         public override List<Entity.UserEntity> GetAllUsers()
         {
-    
-            return context.User.Select(x => new Entity.UserEntity(x.Id,x.Username)).ToList();
+            var contextUser =   ((EntityProject.Utils.Repository<User>)context.GetRepository(typeof(User)));
+            return contextUser.GetAll().ToList().Select(x => new Entity.UserEntity((x as User).Id,(x as User).Username)).ToList();
         }
 
         public override Entity.UserEntity GetUserById(long id)
         {
-            return context.User.Where(x=>x.Id == id).Select(x => new Entity.UserEntity(x.Id, x.Username)).FirstOrDefault();
+            var contextUser =   ((EntityProject.Utils.Repository<User>)context.GetRepository(typeof(User)));
+            var temp =  contextUser.Get(id);
+            return new Entity.UserEntity((temp as User).Id, (temp as User).Username);
         }
 
         public override Entity.BaseModelEntity GetModelById(long id)
         {
-            return Models.Where(x => x.Id == id).FirstOrDefault();
+            var contextModel = ((EntityProject.Utils.Repository<Model>)context.GetRepository(typeof(Model)));
+            var temp= contextModel.Get(id);
+            return null;//? TODO no se que regresarte aqui
         }
 
         public override List<Entity.BaseModelEntity> GetAllModels()
         {
-            return Models;
+            return Models;//? TODO no se que regresarte aqui
         }
 
         public override List<Entity.BaseModelEntity> GetAllModelsByUser(Entity.UserEntity user)
         {
-            return Models.Where(x => x.UserEntity.Id == user.Id).ToList();
+            return Models.Where(x => x.UserEntity.Id == user.Id).ToList();//? TODO no se que regresarte aqui
         }
 
         public override long _AddUser(Entity.UserEntity user)
         {
-           
-            context.User.Add(EntityProject.Utils.UserFactoryDB.create(user.Username));
+            var contextUser = ((EntityProject.Utils.Repository<User>)context.GetRepository(typeof(User)));
+            contextUser.Insert(EntityProject.Utils.UserFactoryDB.create(user.Username));
             //Users[Users.Count - 1].SetId(Users.Count);
-            context.SaveChanges();
-            return context.User.Count();
+            contextUser.SubmitChanges();
+            return contextUser.GetAll().Count();
         }
 
         public override long _AddModel(Entity.BaseModelEntity model)
@@ -161,12 +171,26 @@ namespace FakeSimulator.Datasources.Memory
 
         public override List<Entity.MaterialEntity> GetAllMaterials()
         {
-            return Materials;
+            var contextMaterial = ((EntityProject.Utils.Repository<Material>)context.GetRepository(typeof(Material)));
+          
+            return contextMaterial.GetAll().ToList().Select(x => new Entity.MaterialEntity()
+            {
+                Id = (x as Material).Id,
+                Name = (x as Material).Name,
+                Resistance = double.Parse((x as Material).Resistence.ToString())
+            }).ToList();
         }
 
         public override Entity.MaterialEntity GetMaterialByName(string name)
         {
-            return Materials.Where(x => x.Name == name).FirstOrDefault();
+            var contextMaterial = ((EntityProject.Utils.Repository<Material>)context.GetRepository(typeof(Material)));
+
+            return contextMaterial.GetAll().Where(y => y.Name.Equals(name)).ToList().Select(x => new Entity.MaterialEntity()
+            {
+                Id = (x as Material).Id,
+                Name = (x as Material).Name,
+                Resistance = double.Parse((x as Material).Resistence.ToString())
+            }).FirstOrDefault();
         }
     }
 }
