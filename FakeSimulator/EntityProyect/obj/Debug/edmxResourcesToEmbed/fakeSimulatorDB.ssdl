@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FakeSimulatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Configuration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OneHourInterval" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ShowFPS" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContainerPressure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Width" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="HasExhaust" Type="bit" Nullable="false" />
+    <Property Name="Height" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IdModel" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FanCapacity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Radius" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="BladeLength" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ComplexDesign" Type="bit" Nullable="false" />
+    <Property Name="IdModel" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Material">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="Resistence" Type="numeric" Precision="8" Scale="5" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="90" Nullable="false" />
+    <Property Name="IdMaterial" Type="bigint" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pass" Type="bit" Nullable="false" />
+    <Property Name="Report" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="IdModel" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ContainerPressure_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="ContainerPressure" Type="Self.ContainerPressure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContainerPressure">
+        <PropertyRef Name="IdModel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FanCapacity_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="FanCapacity" Type="Self.FanCapacity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FanCapacity">
+        <PropertyRef Name="IdModel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_Material">
+    <End Role="Material" Type="Self.Material" Multiplicity="1" />
+    <End Role="Model" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="IdMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Model" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FakeSimulatorModelStoreContainer">
+    <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContainerPressure" EntityType="Self.ContainerPressure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FanCapacity" EntityType="Self.FanCapacity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ContainerPressure_Model" Association="Self.FK_ContainerPressure_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="ContainerPressure" EntitySet="ContainerPressure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FanCapacity_Model" Association="Self.FK_FanCapacity_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="FanCapacity" EntitySet="FanCapacity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_Material" Association="Self.FK_Model_Material">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="Model" EntitySet="Model" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_User" Association="Self.FK_Model_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Model" EntitySet="Model" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

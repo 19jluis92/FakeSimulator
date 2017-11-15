@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FakeSimulatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Configuration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OneHourInterval" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ShowFPS" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContainerPressure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Width" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="HasExhaust" Type="Boolean" Nullable="false" />
+    <Property Name="Height" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IdModel" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_ContainerPressure_Model" FromRole="ContainerPressure" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="FanCapacity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Radius" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="BladeLength" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ComplexDesign" Type="Boolean" Nullable="false" />
+    <Property Name="IdModel" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_FanCapacity_Model" FromRole="FanCapacity" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="Material">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Resistence" Type="Decimal" Precision="8" Scale="5" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_Model_Material" FromRole="Material" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdMaterial" Type="Int64" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="ContainerPressure" Relationship="Self.FK_ContainerPressure_Model" FromRole="Model" ToRole="ContainerPressure" />
+    <NavigationProperty Name="FanCapacity" Relationship="Self.FK_FanCapacity_Model" FromRole="Model" ToRole="FanCapacity" />
+    <NavigationProperty Name="Material" Relationship="Self.FK_Model_Material" FromRole="Model" ToRole="Material" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Model_User" FromRole="Model" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pass" Type="Boolean" Nullable="false" />
+    <Property Name="Report1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IdModel" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_Model_User" FromRole="User" ToRole="Model" />
+  </EntityType>
+  <Association Name="FK_ContainerPressure_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="ContainerPressure" Type="Self.ContainerPressure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContainerPressure">
+        <PropertyRef Name="IdModel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FanCapacity_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="FanCapacity" Type="Self.FanCapacity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FanCapacity">
+        <PropertyRef Name="IdModel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_Material">
+    <End Role="Material" Type="Self.Material" Multiplicity="1" />
+    <End Role="Model" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="IdMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Model" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Configuration" EntityType="Self.Configuration" />
+    <EntitySet Name="ContainerPressure" EntityType="Self.ContainerPressure" />
+    <EntitySet Name="FanCapacity" EntityType="Self.FanCapacity" />
+    <EntitySet Name="Material" EntityType="Self.Material" />
+    <EntitySet Name="Model" EntityType="Self.Model" />
+    <EntitySet Name="Report" EntityType="Self.Report" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_ContainerPressure_Model" Association="Self.FK_ContainerPressure_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="ContainerPressure" EntitySet="ContainerPressure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FanCapacity_Model" Association="Self.FK_FanCapacity_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="FanCapacity" EntitySet="FanCapacity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_Material" Association="Self.FK_Model_Material">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="Model" EntitySet="Model" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_User" Association="Self.FK_Model_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Model" EntitySet="Model" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

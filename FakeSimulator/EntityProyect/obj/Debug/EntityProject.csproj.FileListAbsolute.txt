@@ -1,0 +1,10 @@
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\bin\Debug\EntityProject.dll.config
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\bin\Debug\EntityProject.dll
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\bin\Debug\EntityProject.pdb
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\bin\Debug\EntityFramework.dll
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\bin\Debug\EntityFramework.xml
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\obj\Debug\EntityProject.csprojResolveAssemblyReference.cache
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\obj\Debug\EntityProject.dll
+C:\Users\jluis\Source\Repos\FakeSimulator\FakeSimulator\EntityProyect\obj\Debug\EntityProject.pdb

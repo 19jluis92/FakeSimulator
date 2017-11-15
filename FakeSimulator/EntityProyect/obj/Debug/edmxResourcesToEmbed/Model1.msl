@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FakeSimulatorModelStoreContainer" CdmEntityContainer="FakeSimulatorEntities">
+    <EntitySetMapping Name="Configuration">
+      <EntityTypeMapping TypeName="FakeSimulatorModel.Configuration">
+        <MappingFragment StoreEntitySet="Configuration">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OneHourInterval" ColumnName="OneHourInterval" />
+          <ScalarProperty Name="ShowFPS" ColumnName="ShowFPS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContainerPressure">
+      <EntityTypeMapping TypeName="FakeSimulatorModel.ContainerPressure">
+        <MappingFragment StoreEntitySet="ContainerPressure">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="HasExhaust" ColumnName="HasExhaust" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="IdModel" ColumnName="IdModel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FanCapacity">
+      <EntityTypeMapping TypeName="FakeSimulatorModel.FanCapacity">
+        <MappingFragment StoreEntitySet="FanCapacity">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Radius" ColumnName="Radius" />
+          <ScalarProperty Name="BladeLength" ColumnName="BladeLength" />
+          <ScalarProperty Name="ComplexDesign" ColumnName="ComplexDesign" />
+          <ScalarProperty Name="IdModel" ColumnName="IdModel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Material">
+      <EntityTypeMapping TypeName="FakeSimulatorModel.Material">
+        <MappingFragment StoreEntitySet="Material">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Resistence" ColumnName="Resistence" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Model">
+      <EntityTypeMapping TypeName="FakeSimulatorModel.Model">
+        <MappingFragment StoreEntitySet="Model">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report">
+      <EntityTypeMapping TypeName="FakeSimulatorModel.Report">
+        <MappingFragment StoreEntitySet="Report">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Report1" ColumnName="Report" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FakeSimulatorModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="FakeSimulatorModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="IdModel" ColumnName="IdModel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="FakeSimulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Fake Simulator 3000" Height="600" Width="950" ResizeMode="NoResize" Icon="icon.ico" Closed="Window_Closed">
+    <Grid Height="auto" Width="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Data sources"></MenuItem>
+                <MenuItem Header="Configuration"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Exit" Click="Exit_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="View Help" Click="ViewHelp_Click"></MenuItem>
+                <MenuItem Header="About Fake Simulator 3000" Click="About_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Test">
+                <MenuItem Header="Add user" Click="Test_AddUser_Click"></MenuItem>
+                <MenuItem Header="Add model to last user" Click="Test_AddModel_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <ContentControl Content="" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Name="MainCC" />
+    </Grid>
+</Window>
