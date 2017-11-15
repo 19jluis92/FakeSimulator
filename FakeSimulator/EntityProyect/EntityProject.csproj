@@ -50,76 +50,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs">
-      <DependentUpon>FakeSimulatorDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ContainerPressure.cs">
-      <DependentUpon>FakeSimulatorDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FakeSimulatorDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FakeSimulatorDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FakeSimulatorDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FakeSimulatorDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FakeSimulatorDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FakeSimulatorDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="FanCapacity.cs">
-      <DependentUpon>FakeSimulatorDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Material.cs">
-      <DependentUpon>FakeSimulatorDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.cs">
-      <DependentUpon>FakeSimulatorDB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Entities\SimulationConfiguration.cs" />
+    <Compile Include="Entities\ContainerPressure.cs" />
+    <Compile Include="EntitiesContext.cs" />
+    <Compile Include="Entities\FanCapacity.cs" />
+    <Compile Include="Entities\Material.cs" />
+    <Compile Include="Entities\Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Report.cs">
-      <DependentUpon>FakeSimulatorDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>FakeSimulatorDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\ContainerPressureFactory.cs" />
-    <Compile Include="Utils\FanCapacityFactory.cs" />
+    <Compile Include="Entities\Report.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Utils\Factory\ContainerPressureFactory.cs" />
+    <Compile Include="Utils\EntityBase.cs" />
+    <Compile Include="Utils\Factory\ContextFactory.cs" />
+    <Compile Include="Utils\Factory\FanCapacityFactory.cs" />
     <Compile Include="Utils\IRepository.cs" />
-    <Compile Include="Utils\ManagerDB.cs" />
-    <Compile Include="Utils\MaterialModelFactory.cs" />
     <Compile Include="Utils\Repository.cs" />
-    <Compile Include="Utils\UserFactoryDB.cs" />
+    <Compile Include="Utils\Factory\UserFactoryDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="FakeSimulatorDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FakeSimulatorDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="FakeSimulatorDB.edmx.diagram">
-      <DependentUpon>FakeSimulatorDB.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="FakeSimulatorDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FakeSimulatorDB.edmx</DependentUpon>
-      <LastGenOutput>FakeSimulatorDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="FakeSimulatorDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FakeSimulatorDB.edmx</DependentUpon>
-      <LastGenOutput>FakeSimulatorDB.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

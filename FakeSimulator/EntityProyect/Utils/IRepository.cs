@@ -15,7 +15,7 @@ namespace EntityProject.Utils
         void Delete(object entity);
         void SubmitChanges();
     }
-    public interface IRepository<T>: IRepository, IDisposable where T : EntityBase
+    public interface IRepository<T>:  IDisposable where T : EntityBase
     {
         T Get(long id);
         void Attach(T entity);

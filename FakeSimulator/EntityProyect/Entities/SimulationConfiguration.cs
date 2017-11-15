@@ -10,7 +10,6 @@ namespace EntityProject
     [Table("Configuration")]
     public partial class SimulationConfiguration: EntityBase
     {
-        public long Id { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal OneHourInterval { get; set; }
