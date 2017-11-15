@@ -92,9 +92,15 @@
     <Compile Include="Views\Home\HomeUC.xaml.cs">
       <DependentUpon>HomeUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Home\ViewModel\ActionCommand.cs" />
+    <Compile Include="Views\Home\ViewModel\SimulationMainModel.cs" />
     <Compile Include="Views\Home\ViewModel\UserItem.cs" />
     <Compile Include="Views\Home\ViewModel\View.cs" />
     <Compile Include="Views\Home\ViewModel\ModelDataItem.cs" />
+    <Compile Include="Views\Home\ViewModel\ViewSimulationModel.cs" />
+    <Compile Include="Views\Home\ViewSimulation\SimulationView.xaml.cs">
+      <DependentUpon>SimulationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Model\FanCapacity\FanCapacityView.xaml.cs">
       <DependentUpon>FanCapacityView.xaml</DependentUpon>
     </Compile>
@@ -123,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Home\HomeUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\ViewSimulation\SimulationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
