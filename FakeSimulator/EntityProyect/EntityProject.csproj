@@ -89,9 +89,10 @@
     </Compile>
     <Compile Include="Utils\ContainerPressureFactory.cs" />
     <Compile Include="Utils\FanCapacityFactory.cs" />
-    <Compile Include="Utils\ImanagerDB.cs" />
+    <Compile Include="Utils\IRepository.cs" />
     <Compile Include="Utils\ManagerDB.cs" />
     <Compile Include="Utils\MaterialModelFactory.cs" />
+    <Compile Include="Utils\Repository.cs" />
     <Compile Include="Utils\UserFactoryDB.cs" />
   </ItemGroup>
   <ItemGroup>
