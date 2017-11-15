@@ -9,20 +9,10 @@
     <Grid>
         <Rectangle x:Name="rectangulo"  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="211" Margin="127,30,0,0" Stroke="Black" VerticalAlignment="Top" Width="36" RadiusY="32.4" RadiusX="32.4">
             <Rectangle.RenderTransform>
-                <RotateTransform  Angle="{Binding Angle, Mode=OneWay}" CenterX="105" CenterY="23" />
+                <RotateTransform  Angle="{Binding Angle, Mode=OneWay}" CenterX="23" CenterY="105" />
             </Rectangle.RenderTransform>
         </Rectangle>
         <Button Command="{Binding Start}" Margin="0,230,226.6,0.4">Iniciar</Button>
-        <Rectangle x:Name="rectangulo_Copy"  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="211" Margin="43,148,0,-88.6" Stroke="Black" VerticalAlignment="Top" Width="32" RadiusY="23.441" RadiusX="23.441">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-89.785"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
         <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="53" Margin="119,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="54"/>
     </Grid>
 </Window>
